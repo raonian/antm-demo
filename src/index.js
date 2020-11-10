@@ -1,13 +1,15 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import 'antd-mobile/dist/antd-mobile.css';
 import './index.css';
 import App from './App';
+import Demo from './demo';
 import reportWebVitals from './reportWebVitals';
 
 ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
+  // <React.StrictMode>
+    <Demo />,
+  // </React.StrictMode>,
   document.getElementById('root')
 );
 
