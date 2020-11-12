@@ -1,6 +1,7 @@
 import React, {useCallback, useEffect, useState} from 'react';
 import './App.css';
 
+// 静态
 // function getData(value) {
 //   setTimeout(() => {
 //     console.log('props', value);
@@ -8,13 +9,23 @@ import './App.css';
 // }
 
 export default function Child(props) {
-  const {value} = props;
+  const {value, values} = props;
   const [child, setChild] = useState(0);
 
+  // 销毁
+  useEffect(() => {
+    console.log('child init');
+
+    return () => {
+      console.log('child destory');
+    }
+  }, []);
+
+  // 清理
   useEffect(() => {
     console.log('child', child);
     return () => {
-      console.log('child destory');
+      console.log('child update');
     }
   }, [child]);
 
@@ -28,16 +39,17 @@ export default function Child(props) {
     }, 3000);
   }
   
+  // 函数参与数据流
   // useEffect(() => {
   //   getData();
   //   // console.log('props', value);
 
   //   return () => {
-  //     console.log('props destory');
+  //     console.log('props update');
   //   }
   // }, [getData]);
 
-
+  // 竞态
   useEffect(() => {
     let cancel = false;
 
@@ -54,6 +66,11 @@ export default function Child(props) {
       cancel = true;
     }
   }, [value]);
+
+  // memo
+  // useEffect(() => {
+  //   console.log('props values', values);
+  // }, [values]);
 
   return (
     <div>

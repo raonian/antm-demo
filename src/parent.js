@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState, useReducer } from 'react';
+import React, { useEffect, useRef, useState, useReducer, useMemo } from 'react';
 import './App.css';
 import Child from './child';
 
@@ -20,21 +20,25 @@ function reducer(state, action) {
 
 export default function Parent() {
   const [value, setValue] = useState(0);
+  // const [remove, setRemove] = useState(false);
   // const ref = useRef(value);
 
+  // 捕获
   function count() {
     setTimeout(() => {
       console.log('value', value);
-    }, 5000);
+    }, 3000);
   }
 
+  // 静态
   // useEffect(() => {
   //   setTimeout(() => {
   //     console.log('value', value);
   //     // console.log('ref', ref.current);
-  //   }, 5000);
+  //   }, 3000);
   // });
 
+  // 依赖
   // useEffect(() => {
   //   let id = setInterval(() => {
   //     setValue(value + 1);
@@ -44,6 +48,7 @@ export default function Parent() {
   //   return () => clearInterval(id);
   // }, []);
 
+  // 解耦
   // const [state, dispatch] = useReducer(reducer, initialState);
   // const { value, step } = state;
   // useEffect(() => {
@@ -55,16 +60,28 @@ export default function Parent() {
   // }, []);
   // console.log(value, step);
   
+  // strict mode
   // setTimeout(() => {
   //   console.log('value', value);
-  // }, 5000);
+  // }, 3000);
+
+  // memo
+  // const values = useMemo(() => ({v: 1}), [remove]);
+  // const values = {v: 1};
 
   return (
     <div>
       <p>parent:</p>
       <button onClick={() => setValue(value + 1)}>value: {value}</button>
-      {/* <button onClick={count}>show</button> */}
-      <Child value={value} />
+      <button onClick={count}>show</button>
+      {/* {
+        remove
+          ?
+          null
+          :
+          <Child value={value} values={values} />
+      }
+      <div><button onClick={() => setRemove(true)}>remove</button></div> */}
     </div>
   );
 }
