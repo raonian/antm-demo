@@ -1,6 +1,9 @@
 import React, { useEffect, useRef, useState, useReducer, useMemo } from 'react';
 import './App.css';
 import Child from './child';
+import A from './a';
+import B from './b';
+import C from './c';
 
 const initialState = {
   value: 0,
@@ -82,6 +85,10 @@ export default function Parent() {
           <Child value={value} values={values} />
       }
       <div><button onClick={() => setRemove(true)}>remove</button></div> */}
+
+      <A />
+      <B />
+      <C />
     </div>
   );
 }
