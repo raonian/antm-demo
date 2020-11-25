@@ -78,8 +78,8 @@ export default function Parent() {
     <ParentContext.Provider value={{value, setValue}}>
       <div>
         {/* <p>parent:{value}</p> */}
-        parent:{value}
-        <button onClick={() => setValue(value + 1)}>parent</button>
+        parent: {value}
+        <button onClick={() => setValue(value + 1)}>add</button>
         {/* <button onClick={count}>show</button> */}
         {/* {
           remove

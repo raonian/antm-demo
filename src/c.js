@@ -1,12 +1,12 @@
-import React, {useCallback, useEffect, useState} from 'react';
+import React, {useContext} from 'react';
+import {ParentContext} from './parent';
 
-export default function c(props) {
-  const {value, values} = props;
-  
+export default function C() {
+  const context = useContext(ParentContext);
 
   return (
     <div>
-      c
+      c: {context.value}
     </div>
   );
 }
