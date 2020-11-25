@@ -1,9 +1,11 @@
-import React, { useEffect, useRef, useState, useReducer, useMemo } from 'react';
+import React, { useEffect, useRef, useState, useReducer, useMemo, createContext } from 'react';
 import './App.css';
 import Child from './child';
 import A from './a';
 import B from './b';
 import C from './c';
+
+export const ParentContext = createContext({});
 
 const initialState = {
   value: 0,
@@ -73,22 +75,25 @@ export default function Parent() {
   // const values = {v: 1};
 
   return (
-    <div>
-      <p>parent:</p>
-      <button onClick={() => setValue(value + 1)}>value: {value}</button>
-      <button onClick={count}>show</button>
-      {/* {
-        remove
-          ?
-          null
-          :
-          <Child value={value} values={values} />
-      }
-      <div><button onClick={() => setRemove(true)}>remove</button></div> */}
+    <ParentContext.Provider value={{value, setValue}}>
+      <div>
+        {/* <p>parent:{value}</p> */}
+        parent:{value}
+        <button onClick={() => setValue(value + 1)}>parent</button>
+        {/* <button onClick={count}>show</button> */}
+        {/* {
+          remove
+            ?
+            null
+            :
+            <Child value={value} values={values} />
+        }
+        <div><button onClick={() => setRemove(true)}>remove</button></div> */}
 
-      <A />
-      <B />
-      <C />
-    </div>
+        <A />
+        <B />
+        <C />
+      </div>
+    </ParentContext.Provider>
   );
 }
